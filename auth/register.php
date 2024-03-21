@@ -7,15 +7,15 @@ $username    = filterRequest("username");
 $email       = filterRequest("email");
 $password    = filterRequest("password");
 $phone       = filterRequest("phone");
-$verifycode  =  filterRequest("verifycode");
+
+$verifycode  =  rand(10000, 99999);
 
 
 if (
   !empty($email) &&
   !empty($password) &&
   !empty($username) &&
-  !empty($phone) &&
-  !empty($verifycode)
+  !empty($phone)
 ) {
 
   $hasedPassword = password_hash($password, PASSWORD_DEFAULT);
