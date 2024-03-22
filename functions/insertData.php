@@ -16,11 +16,9 @@ function insertData($table, $data, $json = true)
   $count = $stmt->rowCount();
   if ($json == true) {
     if ($count > 0) {
-      printResults(ResultType::Success, null);
-      // echo json_encode(array("status" => "success"));
+      printResults(ResultType::Success, $data);
     } else {
       printResults(ResultType::Failure, "failure to insert data");
-      // echo json_encode(array("status" => "failure"));
     }
   }
   return $count;

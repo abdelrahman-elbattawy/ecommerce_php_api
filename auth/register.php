@@ -38,7 +38,5 @@ if (
     );
 
     insertData("users", $data);
-
-    printResults(ResultType::Success, $data);
   }
 }
