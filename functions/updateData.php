@@ -16,7 +16,7 @@ function updateData($table, $data, $where, $json = true)
   $count = $stmt->rowCount();
   if ($json == true) {
     if ($count > 0) {
-      printResults(ResultType::Success, $data);
+      printResults(ResultType::Success, null);
     } else {
       printResults(ResultType::Failure, "failure to update data");
     }
