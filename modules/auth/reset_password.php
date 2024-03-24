@@ -1,6 +1,9 @@
 <?php
 
-include "../connect.php";
+include "../../core/DB/connect.php";
+include "../../core/functions/filterRequest.php";
+include "../../core/functions/printResult.php";
+include "../../core/functions/updateData.php";
 
 
 $email       = filterRequest("email");

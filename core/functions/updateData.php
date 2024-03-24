@@ -1,4 +1,5 @@
 <?php
+
 function updateData($table, $data, $where, $json = true)
 {
   global $con;

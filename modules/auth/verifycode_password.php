@@ -1,7 +1,8 @@
 <?php
 
-include "../connect.php";
-
+include "../../core/DB/connect.php";
+include "../../core/functions/filterRequest.php";
+include "../../core/functions/printResult.php";
 
 $email         = filterRequest("email");
 $verifycode    = filterRequest("verifycode");
