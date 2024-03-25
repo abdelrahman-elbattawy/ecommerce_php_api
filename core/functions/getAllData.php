@@ -1,6 +1,6 @@
 <?php
 
-function getData($table, $where = null, $values = null, $json = true)
+function getAllData($table, $where = null, $values = null, $json = true)
 {
   global $con;
   $data = array();
