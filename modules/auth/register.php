@@ -4,6 +4,7 @@ include "../../core/DB/connect.php";
 include "../../core/functions/filterRequest.php";
 include "../../core/functions/printResult.php";
 include "../../core/functions/insertData.php";
+include "../../core/functions/getData.php";
 
 
 $username    = filterRequest("username");
@@ -21,18 +22,18 @@ if (
   !empty($phone)
 ) {
 
-  $hasedPassword = password_hash($password, PASSWORD_DEFAULT);
+  $data = getData(
+    "users",
+    "users_email = ? OR users_phone = ?",
+    array($email, $phone),
+    false
+  );
 
-  $stmt = $con->prepare("SELECT * FROM users WHERE users_email = ? OR users_phone = ?");
 
-  $stmt->execute(array($email, $password));
+  if ($data == null) {
+    $hasedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-  $count = $stmt->rowCount();
-
-  if ($count > 0) {
-    printResults(ResultType::Failure, "Email or Phone is exist");
-  } else {
-    $data = array(
+    $values = array(
       "users_email" => $email,
       "users_name" => $username,
       "users_phone" => $phone,
@@ -40,6 +41,8 @@ if (
       "users_verifycode" => $verifycode,
     );
 
-    insertData("users", $data);
+    insertData("users", $values);
+  } else {
+    printResults(ResultType::Failure, "Email or Phone is exist");
   }
 }

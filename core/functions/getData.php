@@ -12,7 +12,7 @@ function getData($table, $where = null, $values = null, $json = true)
   }
 
   $stmt->execute($values);
-  $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $data = $stmt->fetch(PDO::FETCH_ASSOC);
   $count  = $stmt->rowCount();
 
   if ($json == true) {

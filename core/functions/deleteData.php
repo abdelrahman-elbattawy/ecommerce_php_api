@@ -7,10 +7,9 @@ function deleteData($table, $where, $json = true)
   $count = $stmt->rowCount();
   if ($json == true) {
     if ($count > 0) {
-      printResults(ResultType::Success, null);
+      printResults(ResultType::Success);
     } else {
-      printResults(ResultType::Failure, "failure to delete data");
+      printResults(ResultType::Failure, "No data!");
     }
   }
-  return $count;
 }

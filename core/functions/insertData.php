@@ -18,8 +18,7 @@ function insertData($table, $data, $json = true)
     if ($count > 0) {
       printResults(ResultType::Success, $data);
     } else {
-      printResults(ResultType::Failure, "failure to insert data");
+      printResults(ResultType::Failure, "No data!");
     }
   }
-  return $count;
 }

@@ -6,7 +6,7 @@ enum ResultType
   case Failure;
 }
 
-function printResults($type, $data)
+function printResults($type, $data = null)
 {
   if ($type == ResultType::Success) {
     if (is_null($data)) {

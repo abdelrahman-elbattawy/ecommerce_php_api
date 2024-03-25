@@ -3,6 +3,7 @@
 include "../../core/DB/connect.php";
 include "../../core/functions/filterRequest.php";
 include "../../core/functions/printResult.php";
+include "../../core/functions/getData.php";
 
 $email         = filterRequest("email");
 $verifycode    = filterRequest("verifycode");
@@ -10,14 +11,15 @@ $verifycode    = filterRequest("verifycode");
 
 if (!empty($email) && !empty($verifycode)) {
 
-  $stmt = $con->prepare("SELECT * FROM users WHERE users_email = ? AND users_verifycode = ?");
+  $data = getData(
+    "users",
+    "users_email = ? AND users_verifycode = ?",
+    array($email, $verifycode),
+    false
+  );
 
-  $stmt->execute(array($email, $verifycode));
-
-  $count = $stmt->rowCount();
-
-  if ($count > 0) {
-    printResults(ResultType::Success, null);
+  if ($data != null) {
+    printResults(ResultType::Success);
   } else {
     printResults(ResultType::Failure, "Incorrect verifycode!");
   }

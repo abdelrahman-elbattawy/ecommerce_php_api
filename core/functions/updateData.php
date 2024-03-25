@@ -15,12 +15,12 @@ function updateData($table, $data, $where, $json = true)
   $stmt = $con->prepare($sql);
   $stmt->execute($vals);
   $count = $stmt->rowCount();
+
   if ($json == true) {
     if ($count > 0) {
-      printResults(ResultType::Success, null);
+      printResults(ResultType::Success);
     } else {
-      printResults(ResultType::Failure, "failure to update data");
+      printResults(ResultType::Failure, "No data!");
     }
   }
-  return $count;
 }

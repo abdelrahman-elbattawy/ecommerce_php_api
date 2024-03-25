@@ -3,20 +3,16 @@
 include "../../core/DB/connect.php";
 include "../../core/functions/filterRequest.php";
 include "../../core/functions/printResult.php";
+include "../../core/functions/getData.php";
 
 $email       = filterRequest("email");
 $password    = filterRequest("password");
 
 if (!empty($email) && !empty($password)) {
 
-  $stmt = $con->prepare("SELECT * FROM users WHERE users_email = ?");
-  $stmt->execute(array($email));
+  $data = getData("users", "users_email = ?", array($email), false);
 
-  $data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-  $count = $stmt->rowCount();
-
-  if ($count > 0) {
+  if ($data != null) {
     $hasedPassword = $data['users_password'];
 
     if (password_verify($password, $hasedPassword)) {
