@@ -2,14 +2,14 @@
 
 define('MB', 1048576);
 
-function imageUpload($imageRequest)
+function imageUpload($imageRequest, $imageFolder)
 {
   global $msgError;
 
-  $imageName       = rand(1000, 10000) . $_FILES[$imageRequest]['name'];
-  $imageTmp        = $_FILES[$imageRequest]['tmp_name'];
-  $imageSize       = $_FILES[$imageRequest]['size'];
-  $imageType       = $_FILES[$imageRequest]['type'];
+  $imageName       = rand(1000, 10000) . $imageRequest['name'];
+  $imageTmp        = $imageRequest['tmp_name'];
+  $imageSize       = $imageRequest['size'];
+  $imageType       = $imageRequest['type'];
 
   $strToArray      = explode(".", $imageName);
 
@@ -36,7 +36,7 @@ function imageUpload($imageRequest)
   }
 
   if (empty($msgError)) {
-    move_uploaded_file($imageTmp, "../upload/" . $imageName);
+    move_uploaded_file($imageTmp, "../../uploads/$imageFolder/" . $imageName);
     return $imageName;
   } else {
     return "fail";
