@@ -20,7 +20,7 @@ function updateData($table, $data, $where, $json = true)
     if ($count > 0) {
       printResults(ResultType::Success);
     } else {
-      printResults(ResultType::Failure, "No data!");
+      printResults(ResultType::Success, "No data has been changed");
     }
   }
 }

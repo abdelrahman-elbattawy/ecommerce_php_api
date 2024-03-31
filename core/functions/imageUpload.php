@@ -14,7 +14,13 @@ function imageUpload($imageRequest, $imageFolder)
   $strToArray      = explode(".", $imageName);
 
   $allowExt        = array("png", "jpg", "gif", "jpeg");
-  $allowMimeType   = array("image/png", "image/jpg", "image/gif", "image/jpeg");
+  $allowMimeType   = array(
+    "image/png",
+    "image/jpg",
+    "image/gif",
+    "image/jpeg",
+    "application/octet-stream"
+  );
 
   $ext             = end($strToArray);
   $ext             = strtolower($ext);
@@ -39,6 +45,6 @@ function imageUpload($imageRequest, $imageFolder)
     move_uploaded_file($imageTmp, "../../uploads/$imageFolder/" . $imageName);
     return $imageName;
   } else {
-    return "fail";
+    return null;
   }
 }

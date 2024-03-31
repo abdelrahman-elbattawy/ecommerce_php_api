@@ -1,7 +1,7 @@
 <?php
-function deleteFile($fileName)
+function deleteFile($fileName, $imageFolder)
 {
-  $filePath = "../upload/" . $fileName;
+  $filePath = "../../uploads/$imageFolder/" . $fileName;
 
   if (file_exists($filePath)) {
     unlink($filePath);
