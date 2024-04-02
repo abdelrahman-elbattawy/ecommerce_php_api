@@ -15,6 +15,7 @@ if (!empty($categoryID)) {
   if ($data != null || $categoryID == "All") {
 
     if ($categoryID == "All") {
+
       $allData = getAllDataByCount(
         "items_view",
         null,
@@ -23,6 +24,7 @@ if (!empty($categoryID)) {
         false
       );
     } else {
+
       $allData = getAllDataByCount(
         "items_view",
         "categories_id = ?",
