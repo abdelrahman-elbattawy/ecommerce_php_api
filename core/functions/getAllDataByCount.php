@@ -6,9 +6,9 @@ function getAllDataByCount($table, $where = null, $values = null, $count = 5, $j
   $data = array();
 
   if ($where == null) {
-    $stmt = $con->prepare("SELECT * FROM $table LIMIT $count");
+    $stmt = $con->prepare("SELECT * FROM $table ORDER BY RAND() LIMIT $count");
   } else {
-    $stmt = $con->prepare("SELECT * FROM $table WHERE $where LIMIT $count");
+    $stmt = $con->prepare("SELECT * FROM $table WHERE $where ORDER BY RAND() LIMIT $count");
   }
 
   $stmt->execute($values);
