@@ -9,7 +9,7 @@ include "../../core/functions/getData.php";
 $categoryID = filterRequest("categoryID");
 $countLimit = filterRequest("countLimit");
 
-if (!empty($categoryID)) {
+if (!empty($categoryID) && !empty($countLimit)) {
 
   $data = getData("categories", "categories_id = ?", array($categoryID), false);
 
