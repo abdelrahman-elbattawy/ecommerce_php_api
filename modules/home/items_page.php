@@ -7,6 +7,7 @@ include "../../core/functions/filterRequest.php";
 include "../../core/functions/getData.php";
 
 $categoryID = filterRequest("categoryID");
+$countLimit = filterRequest("countLimit");
 
 if (!empty($categoryID)) {
 
@@ -19,7 +20,7 @@ if (!empty($categoryID)) {
         "items_view",
         null,
         null,
-        5,
+        $countLimit,
         false
       );
     } else {
@@ -27,7 +28,7 @@ if (!empty($categoryID)) {
         "items_view",
         "categories_id = ?",
         array($categoryID),
-        5,
+        $countLimit,
         false
       );
     }
