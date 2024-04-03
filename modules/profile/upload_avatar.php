@@ -19,8 +19,6 @@ if (!empty($imageRequest) && !empty($imageFoldar) && !empty($email)) {
 
     if (!empty($imageName)) {
       printResults(ResultType::Success, $imageName);
-    } else {
-      printResults(ResultType::Failure, "Cannot upload image");
     }
   } else {
     printResults(ResultType::Failure, "Email not exist!");

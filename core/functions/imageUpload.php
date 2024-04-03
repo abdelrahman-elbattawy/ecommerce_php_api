@@ -29,15 +29,11 @@ function imageUpload($imageRequest, $imageFolder)
   if (!empty($imageName)) {
 
     if (!in_array($ext, $allowExt)) {
-      $msgError[] = "Ext";
-    }
-
-    if (!in_array($imageType, $allowMimeType)) {
-      $msgError[] = "Mime Type";
-    }
-
-    if ($imageSize > 2 * MB) {
-      $msgError[] = "Size";
+      $msgError = "Ext";
+    } else if (!in_array($imageType, $allowMimeType)) {
+      $msgError = "Mime Type";
+    } else if ($imageSize > 2 * MB) {
+      $msgError = "Size";
     }
   }
 
@@ -45,6 +41,7 @@ function imageUpload($imageRequest, $imageFolder)
     move_uploaded_file($imageTmp, "../../uploads/$imageFolder/" . $imageName);
     return $imageName;
   } else {
+    printResults(ResultType::Failure, $msgError);
     return null;
   }
 }
