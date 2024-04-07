@@ -16,7 +16,7 @@ function insertData($table, $data, $json = true)
   $count = $stmt->rowCount();
   if ($json == true) {
     if ($count > 0) {
-      printResults(ResultType::Success, $data);
+      printResults(ResultType::Success);
     } else {
       printResults(ResultType::Failure, "No data!");
     }
