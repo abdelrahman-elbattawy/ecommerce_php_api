@@ -4,6 +4,7 @@ include "../../core/DB/connect.php";
 include "../../core/functions/printResult.php";
 include "../../core/functions/getAllData.php";
 include "../../core/functions/filterRequest.php";
+include "../../core/functions/execProc.php";
 
 $userID = filterRequest("userID");
 
@@ -11,22 +12,14 @@ $userID = filterRequest("userID");
 if (!empty($userID)) {
   $categories = getAllData("categories", null, null, false);
 
-  $stmt = $con->prepare("CALL allItems (?)");
-  $values = array($userID);
+  $items = execProc("getAllItems", null, null, false);
 
-  $stmt->execute($values);
-  $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  $count  = $stmt->rowCount();
-
-  if ($count > 0) {
-    $items = $data;
-  } else {
-    $items = "No Data!";
-  }
+  $favItems = execProc("getFavoriteItemsBy", "?", array($userID), false);
 
   $allData = array(
     "categories" => $categories,
-    "items" => $items
+    "items" => $items,
+    "favoriteItems" => $favItems,
   );
 
   if ($allData != null) {
