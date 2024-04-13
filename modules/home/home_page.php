@@ -16,10 +16,13 @@ if (!empty($userID)) {
 
   $favItems = execProc("getFavoriteItemsBy", "?", array($userID), false);
 
+  $cartItems = execProc("getCartItems", "?", array($userID), false);
+
   $allData = array(
     "categories" => $categories,
     "items" => $items,
     "favoriteItems" => $favItems,
+    "cartItems" => $cartItems,
   );
 
   if ($allData != null) {
